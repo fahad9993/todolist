@@ -1,9 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-// const ObjectId = new mongoose.Types.ObjectId;
 const _ = require("lodash");
-// const { ObjectId } = require("mongodb");
 const date = require(__dirname + "/date.js");
 
 const app = express();
