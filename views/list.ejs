@@ -1,0 +1,45 @@
+<%- include("header") -%>
+
+    <div class="box" id="heading">
+        <h1> <%= listTitle %> </h1>
+    </div>
+
+    <div class="box">
+        <% newListItems.forEach(function(item){ %>
+            <form action="/delete" method="post">
+                <div class="item">
+                    <div class="item-p">
+                        <input type="checkbox" name="checkbox" value="<%= item.checkedValue %>" onclick="this.form.submit()">
+                        <input type="hidden" name="checkedItemId" value="<%= item._id %>"></input>
+                        <p><%= item.name %></p>
+                    </div>
+
+                    <div><button type="submit" name="deleteIcon" value="<%= item._id %>"><i class="uil uil-trash-alt delete-icon"></i></button></div>
+                </div>
+                <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+            </form>
+        <% }) %>
+
+        <form class="item" action="/" method="post">
+            <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+            <button type="submit" name="list" value="<%= listTitle %>">+</button>
+        </form>
+    </div>
+
+    <script> 
+        window.onload = checkedif;
+        
+        function checkedif() {
+            const checkboxes = document.querySelectorAll("input[name='checkbox']");
+            checkboxes.forEach((checkbox)=>{
+                if(checkbox.value === "On"){
+                    checkbox.checked = true;
+                    console.log("checkedif");
+                } else {
+                    checkbox.checked = false;
+                }
+            })
+            };
+    </script>
+    
+    <%- include("footer") -%>
